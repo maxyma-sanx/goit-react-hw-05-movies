@@ -1,16 +1,18 @@
-export const App = () => {
+import { Routes, Route } from 'react-router-dom';
+import PAGES from 'router/paths';
+import Home from 'pages/Home';
+import { GlobalStyles } from './GlobalStyles';
+
+const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <Routes>
+        <Route path={PAGES.homepage} element={<Home />}></Route>
+        <Route path="*" element={<>Hello world!</>}></Route>
+      </Routes>
+      <GlobalStyles />
+    </>
   );
 };
+
+export default App;
