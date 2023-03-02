@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'b5dbc40d665affe8ed0bac71106b3fa8';
+export const API_KEY = 'b5dbc40d665affe8ed0bac71106b3fa8';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const params = {
@@ -9,40 +9,32 @@ const params = {
   },
 };
 
-const fetchTrendingMovies = async () => {
-  const { data } = await axios.get(`trending/all/day`, params);
+export const fetchTrendingMovies = async () => {
+  const { data } = await axios.get(`trending/movie/day`, params);
 
   return data;
 };
 
-const fetchSearchMovies = async signal => {
-  const { data } = await axios.get(`search/movie`, params);
+export const fetchSearchMovies = async movie => {
+  const { data } = await axios.get(`search/movie?query=${movie}`, params);
 
   return data;
 };
 
-const fetchMovieDetails = async (signal, id) => {
+export const fetchMovieDetails = async id => {
   const { data } = await axios.get(`movie/${id}`, params);
 
   return data;
 };
 
-const fetchMovieCredits = async (signal, id) => {
+export const fetchMovieCredits = async id => {
   const { data } = await axios.get(`movie/${id}/credits`, params);
 
   return data;
 };
 
-const fetchMovieReviews = async (signal, id) => {
+export const fetchMovieReviews = async id => {
   const { data } = await axios.get(`movie/${id}/reviews`, params);
 
   return data;
-};
-
-export {
-  fetchTrendingMovies,
-  fetchSearchMovies,
-  fetchMovieDetails,
-  fetchMovieCredits,
-  fetchMovieReviews,
 };
