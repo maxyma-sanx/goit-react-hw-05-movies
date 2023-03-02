@@ -1,17 +1,30 @@
 import { Container } from 'components/Container';
-import { NavContainer, NavList } from './Header.styled';
+import { Outlet } from 'react-router-dom';
+import { NavContainer, NavLinkStyled, NavList } from './Header.styled';
+import { BiCameraMovie, BiHomeAlt } from 'react-icons/bi';
+import { Suspense } from 'react';
+import { Loader } from 'components/Loader';
 
-const Header = () => {
+export const Header = () => {
   return (
-    <NavContainer>
-      <Container>
-        <NavList>
-          <li>Home</li>
-          <li>Movies</li>
-        </NavList>
-      </Container>
-    </NavContainer>
+    <>
+      <NavContainer>
+        <Container>
+          <NavList>
+            <NavLinkStyled to="/">
+              <BiHomeAlt size={20} />
+              Home
+            </NavLinkStyled>
+            <NavLinkStyled to="movies">
+              <BiCameraMovie size={20} />
+              Movies
+            </NavLinkStyled>
+          </NavList>
+        </Container>
+      </NavContainer>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </>
   );
 };
-
-export default Header;
